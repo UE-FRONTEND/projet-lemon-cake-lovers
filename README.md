@@ -1,13 +1,14 @@
 # Projet Front
 
-## Members: // TODO
+## Members: Boumali Samy / De La Rochebrochard Amaury
+
 
 ### TP group : 
 - [ ] TPA41
 - [ ] TPA42
-- [ ] TPA51
+- [x] TPA51
 - [ ] TPA52
-- [x] Not selected
+- [ ] Not selected
 
 
 
