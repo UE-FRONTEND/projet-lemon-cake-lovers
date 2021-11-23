@@ -5,11 +5,18 @@
       <input type="button" value="Démarrer"  class="col"/>
       <input type="button" value="Consulter historique" class="col"/>
     </div>
+    <div>
+      <router-link to="/Partie"> PARTIE </router-link>
+      <router-view></router-view>
+    </div>
 </template>
 
 
 <script>
-
+import Partie from "./Partie";
+export default {
+  components: {Partie}
+}
 </script>
 
 <style scoped>
