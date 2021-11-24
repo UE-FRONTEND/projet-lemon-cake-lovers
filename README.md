@@ -34,3 +34,6 @@ npm run test
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Date rendu 
+22/12/2021
