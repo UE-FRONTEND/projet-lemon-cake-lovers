@@ -1,5 +1,10 @@
 <template>
-  <h1>{{ minute }} : {{second}}</h1>
+  <h1> {{minute}} :
+  <template v-if="this.second < 10">
+    0
+  </template>
+  {{second}}
+  </h1>
   <input id ="GuessText" type="text"/>
   <br/>
   <input type="button" value="Submit" @click="submit"/>
@@ -40,7 +45,7 @@ export default {
           this.second--;
 
         } else if (this.second === 0 && this.minute > 0) {
-          this.second = 59;
+          this.second = 15;
           this.minute--;
 
         } else {
