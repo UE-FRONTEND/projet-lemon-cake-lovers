@@ -93,7 +93,14 @@ export default {
       else if(ret_val === 0){
         this.txt = "Bravo !";
         this.res = 1;
-        this.addAll(this.essais, 60-this.second, 10-this.minute, this.res)
+        let obj = {
+          essais : this.essais,
+          seconde : 60 - this.second,
+          minute :9 - this.minute,
+          result : this.res
+        };
+        //window.console.log(obj);
+        this.addAll(obj);
         clearInterval(this.intervalFunc);
       }
       else if(ret_val === -1){
@@ -113,7 +120,7 @@ export default {
         result : this.res
       };
       //window.console.log(obj);
-      this.addAll(obj)
+      this.addAll(obj);
     },
   }
 }
