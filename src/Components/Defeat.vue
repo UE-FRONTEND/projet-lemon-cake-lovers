@@ -1,0 +1,22 @@
+<template>
+  <p>Nombre d'essais : {{ getLastDefeat }}</p>
+  <router-link to="/" tag="button">
+    <input type="button" value="Retour à l'accueil"/>
+  </router-link>
+</template>
+
+<script>
+
+import Result from "./Partie.vue"
+import { mapGetters } from "vuex";
+
+export default {
+  name : 'Defeat',
+  computed : {
+       ...mapGetters(["getLastDefeat"]),
+  }
+}
+</script>
+
+<style scoped>
+</style>
