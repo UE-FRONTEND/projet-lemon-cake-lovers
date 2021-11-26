@@ -15,8 +15,6 @@
   <p>{{txt}}</p>
 </template>
 
-
-
 <script>
 
 import axios from "axios";
@@ -29,7 +27,7 @@ export default {
       minute : 10,
       second : 0,
       token : undefined,
-      res : undefined,
+      res : 0,
       essais : 0,
       txt : "Tentez votre chance !",
       intervalFunc : undefined, //contain the interval for the timer
@@ -66,17 +64,18 @@ export default {
 
     getToken : async function() {
       //Get Request
+      let tmp;
       await axios
           .get("https://vuejs-rest-challenge.herokuapp.com/token")
           .then( (response) => {
-            this.res = response.data;
+            tmp = response.data;
             //Debug
             //console.log(response.data);
           })
           .catch(function(error) {
             console.log(error);
           });
-      this.token = this.res.token;
+      this.token = tmp.token;
     },
 
     submit : async function () {
@@ -85,9 +84,6 @@ export default {
       let response1 = axios.post("https://vuejs-rest-challenge.herokuapp.com/try",
                  {token : this.token , guess : this.guess});
       let ret_val = (await response1).data.code; //response return a tab with field code
-      //Debug
-      //window.console.log(this.guess);
-      //window.console.log(ret_val);
 
       //Handling req value
       if(ret_val === 1){
@@ -96,15 +92,8 @@ export default {
       }
       else if(ret_val === 0){
         this.txt = "Bravo !";
-        let duration = {
-          minutes : 10 - this.minutes,
-          seconds : 60 - this.seconds
-        };
-
-        /*this.addDuration(duration);
-        this.addResult(this.res);
-        this.addNbTries(this.essais);**/
-        this.addAll(this.essais, this.duree, this.res)
+        this.res = 1;
+        this.addAll(this.essais, 60-this.second, 10-this.minute, this.res)
         clearInterval(this.intervalFunc);
       }
       else if(ret_val === -1){
@@ -115,15 +104,16 @@ export default {
     },
 
     surrender : function () {
-      let duration = {
-        minutes : 10 - this.minutes,
-        seconds : 60 - this.seconds
+      let sec = 60 - this.second;
+      let min = 9 - this.minute;
+      let obj = {
+        essais : this.essais,
+        seconde : sec,
+        minute : min,
+        result : this.res
       };
-      this.addAll(this.essais, duration, this.res);
-      /*this.addDuration(duration);
-      this.addResult(this.res);
-      console.log(this.essais);
-      this.addNbTries(this.essais);**/
+      //window.console.log(obj);
+      this.addAll(obj)
     },
   }
 }

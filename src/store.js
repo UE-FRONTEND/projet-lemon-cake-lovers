@@ -11,37 +11,17 @@ export const store = createStore({
         count(state) {
             return state.allData.length;
         },
+        getAll(state) {
+            return state.allData;
+        },
         getLastNbTries(state) {
             return state.allData[state.allData.length - 1 ].essais;
         },
-        getAllTries(state) {
-            return state.allData;
-        },
-        getAllDurations(state) {
-            return state.allData[state.allData.length - 1 ].duree;
-        },
-        getAllResults(state) {
-            return state.allData[state.allData.length - 1 ].result;
-        }
     },
-
     mutations: {
-        addAll(state, essais, duree, result){
-            state.allData.push({
-                essais: essais,
-                duree : duree,
-                result : result,
-            });
-            console.log(state.allData);
+        addAll(state, object){
+            state.allData.push(object);
+            console.log(object);
         },
-        /*addNbTries(state,value) {
-            state.essais.push(value);
-        },
-        addDuration(state,value) {
-            state.duree.push(value);
-        },
-        addResult(state,value) {
-            state.result.push(value)
-        }**/
     }
 })
