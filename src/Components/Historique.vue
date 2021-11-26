@@ -1,7 +1,4 @@
 <template>
-  <ul>
-    <li v-for="x in getAll" v-bind:key="x">
-  </ul>
 </template>
 
 <script>

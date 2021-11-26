@@ -3,31 +3,38 @@ import {createStore} from 'vuex'
 export const store = createStore({
     state() {
         return {
-            essais: [],  //contiendra le nombre d'essais de chaque partie de l'historique
-            duree: [],
-            result : []
+            //contiendra le nombre d'essais de chaque partie de l'historique
+            allData: [],
         }
     },
     getters: {
         count(state) {
-            return state.essais.length;
+            return state.allData.length;
         },
         getLastNbTries(state) {
-            return state.essais[state.essais.length - 1];
+            return state.allData[state.allData.length - 1 ].essais;
         },
         getAllTries(state) {
-            return state.essais;
+            return state.allData;
         },
         getAllDurations(state) {
-            return state.duree;
+            return state.allData[state.allData.length - 1 ].duree;
         },
         getAllResults(state) {
-            return state.result;
+            return state.allData[state.allData.length - 1 ].result;
         }
     },
 
     mutations: {
-        addNbTries(state,value) {
+        addAll(state, essais, duree, result){
+            state.allData.push({
+                essais: essais,
+                duree : duree,
+                result : result,
+            });
+            console.log(state.allData);
+        },
+        /*addNbTries(state,value) {
             state.essais.push(value);
         },
         addDuration(state,value) {
@@ -35,6 +42,6 @@ export const store = createStore({
         },
         addResult(state,value) {
             state.result.push(value)
-        }
+        }**/
     }
 })

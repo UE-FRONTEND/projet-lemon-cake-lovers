@@ -1,5 +1,5 @@
 <template>
-  <p>Nombre d'essais : {{ getLastDefeat }}</p>
+  <p>Nombre d'essais : {{ getLastNbTries }}</p>
   <router-link to="/" tag="button">
     <input type="button" value="Retour à l'accueil"/>
   </router-link>
@@ -13,7 +13,7 @@ import { mapGetters } from "vuex";
 export default {
   name : 'Defeat',
   computed : {
-       ...mapGetters(["getLastNbTries"]),
+    ...mapGetters(["getLastNbTries"]),
   }
 }
 </script>
