@@ -25,6 +25,7 @@ export default {
       essais : 0,
       txt : "Tentez votre chance !",
       intervalFunc : undefined, //contain the interval for the timer
+
     }
   },
   //Called at page render
@@ -35,7 +36,9 @@ export default {
   },
   methods : {
     //Decrease the timer and set intervalFunc
-    ...mapMutations(["addFail"]),
+    ...mapMutations(["addNbTries"]),
+    ...mapMutations(["addDuration"]),
+    ...mapMutations(["addResult"]),
     tickFunc: function(){
       this.intervalFunc = window.setInterval(() => {
         if (this.second > 0) {
@@ -75,17 +78,33 @@ export default {
       if(ret_val === 1){
         this.txt = "C'est plus !";
         this.essais += 1;
-      }else if(ret_val === 0){
+      }
+      else if(ret_val === 0){
         this.txt = "Bravo !";
+        this.res = 0;
+        let duration = {
+          minutes : 10 - this.minutes,
+          seconds : 60 - this.seconds
+        };
+        this.addDuration(duration);
+        this.addResult(this.res);
+        this.addNbTries(this.essais);
         clearInterval(this.intervalFunc);
-      }else if(ret_val === -1){
+      }
+      else if(ret_val === -1){
         this.txt = "C'est moins !";
         this.essais += 1;
       }
       document.getElementById("GuessText").value ="";
     },
     surrender : function () {
-      this.addFail(this.essais);
+      let duration = {
+        minutes : 10 - this.minutes,
+        seconds : 60 - this.seconds
+      };
+      this.addDuration(duration);
+      this.addResult(this.res);
+      this.addNbTries(this.essais);
     }
   }
 }

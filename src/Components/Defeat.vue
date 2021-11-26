@@ -13,7 +13,7 @@ import { mapGetters } from "vuex";
 export default {
   name : 'Defeat',
   computed : {
-       ...mapGetters(["getLastDefeat"]),
+       ...mapGetters(["getLastNbTries"]),
   }
 }
 </script>
