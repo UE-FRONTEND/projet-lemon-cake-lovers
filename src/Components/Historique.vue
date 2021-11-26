@@ -1,4 +1,7 @@
 <template>
+  <span>
+Tps moy : {{this.getAllDurations}}
+</span>
 </template>
 
 <script>

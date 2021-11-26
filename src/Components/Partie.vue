@@ -97,14 +97,14 @@ export default {
       else if(ret_val === 0){
         this.txt = "Bravo !";
         let duration = {
-          minutes : 10 - this.minutes,
-          seconds : 60 - this.seconds
+          minute : 10 - this.minute,
+          second : 60 - this.second
         };
 
         /*this.addDuration(duration);
         this.addResult(this.res);
         this.addNbTries(this.essais);**/
-        this.addAll(this.essais, this.duree, this.res)
+        this.addAll(this.essais, duration, this.res)
         clearInterval(this.intervalFunc);
       }
       else if(ret_val === -1){
@@ -116,9 +116,10 @@ export default {
 
     surrender : function () {
       let duration = {
-        minutes : 10 - this.minutes,
-        seconds : 60 - this.seconds
+        minute : 10 - this.minute,
+        second : 60 - this.second
       };
+      console.log(this.minute);
       this.addAll(this.essais, duration, this.res);
       /*this.addDuration(duration);
       this.addResult(this.res);
