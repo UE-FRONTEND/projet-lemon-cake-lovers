@@ -1,9 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <span>
-Tps moy : {{this.getAllDurations.minute}}
-</span>
-
   <ul>
     <li v-for="x in getAll" v-bind:key="x">
       <p>Nombre d'essais => {{x.essais}}</p>

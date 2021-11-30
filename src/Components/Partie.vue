@@ -64,18 +64,18 @@ export default {
 
     getToken : async function() {
       //Get Request
-      let resp;
+      let tmp;
       await axios
           .get("https://vuejs-rest-challenge.herokuapp.com/token")
           .then( (response) => {
-            resp = response.data;
+            tmp = response.data;
             //Debug
             //console.log(response.data);
           })
           .catch(function(error) {
             console.log(error);
           });
-      this.token = this.resp.token;
+      this.token = tmp.token;
     },
 
     submit : async function () {
