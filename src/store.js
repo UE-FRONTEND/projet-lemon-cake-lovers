@@ -19,9 +19,8 @@ export const store = createStore({
         },
     },
     mutations: {
-        addAll(state, object){
+        addAll(state, object) {
             state.allData.push(object);
-            console.log(object);
-        },
+        }
     }
 })
