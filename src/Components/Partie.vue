@@ -66,17 +66,18 @@ export default {
 
     getToken : async function() {
       //Get Request
+      let resp;
       await axios
           .get("https://vuejs-rest-challenge.herokuapp.com/token")
           .then( (response) => {
-            this.res = response.data;
+            resp = response.data;
             //Debug
             //console.log(response.data);
           })
           .catch(function(error) {
             console.log(error);
           });
-      this.token = this.res.token;
+      this.token = this.resp.token;
     },
 
     submit : async function () {
@@ -119,8 +120,9 @@ export default {
         minute : 10 - this.minute,
         second : 60 - this.second
       };
-      console.log(this.minute);
-      this.addAll(this.essais, duration, this.res);
+      console.log("oui "+ duration.second);
+      this.res = 5;
+      this.addAll(this.essais, 20, this.res);
       /*this.addDuration(duration);
       this.addResult(this.res);
       console.log(this.essais);

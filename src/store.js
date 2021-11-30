@@ -32,7 +32,7 @@ export const store = createStore({
                 duree : duree,
                 result : result,
             });
-            console.log(state.allData);
+            console.log(state.allData[0]);
         },
         /*addNbTries(state,value) {
             state.essais.push(value);

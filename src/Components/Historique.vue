@@ -1,6 +1,6 @@
 <template>
   <span>
-Tps moy : {{this.getAllDurations}}
+Tps moy : {{this.getAllDurations.minute}}
 </span>
 </template>
 
