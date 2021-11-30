@@ -15,8 +15,6 @@
   <p>{{txt}}</p>
 </template>
 
-
-
 <script>
 
 import axios from "axios";
@@ -29,7 +27,7 @@ export default {
       minute : 10,
       second : 0,
       token : undefined,
-      res : undefined,
+      res : 0,
       essais : 0,
       txt : "Tentez votre chance !",
       intervalFunc : undefined, //contain the interval for the timer
@@ -86,9 +84,6 @@ export default {
       let response1 = axios.post("https://vuejs-rest-challenge.herokuapp.com/try",
                  {token : this.token , guess : this.guess});
       let ret_val = (await response1).data.code; //response return a tab with field code
-      //Debug
-      //window.console.log(this.guess);
-      //window.console.log(ret_val);
 
       //Handling req value
       if(ret_val === 1){
@@ -97,15 +92,15 @@ export default {
       }
       else if(ret_val === 0){
         this.txt = "Bravo !";
-        let duration = {
-          minute : 10 - this.minute,
-          second : 60 - this.second
+        this.res = 1;
+        let obj = {
+          essais : this.essais,
+          seconde : 60 - this.second,
+          minute :9 - this.minute,
+          result : this.res
         };
-
-        /*this.addDuration(duration);
-        this.addResult(this.res);
-        this.addNbTries(this.essais);**/
-        this.addAll(this.essais, duration, this.res)
+        //window.console.log(obj);
+        this.addAll(obj);
         clearInterval(this.intervalFunc);
       }
       else if(ret_val === -1){
@@ -116,17 +111,16 @@ export default {
     },
 
     surrender : function () {
-      let duration = {
-        minute : 10 - this.minute,
-        second : 60 - this.second
+      let sec = 60 - this.second;
+      let min = 9 - this.minute;
+      let obj = {
+        essais : this.essais,
+        seconde : sec,
+        minute : min,
+        result : this.res
       };
-      console.log("oui "+ duration.second);
-      this.res = 5;
-      this.addAll(this.essais, 20, this.res);
-      /*this.addDuration(duration);
-      this.addResult(this.res);
-      console.log(this.essais);
-      this.addNbTries(this.essais);**/
+      //window.console.log(obj);
+      this.addAll(obj);
     },
   }
 }
