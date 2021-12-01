@@ -57,6 +57,7 @@ export default {
 
         } else {
           // Timer hits 0 do what you want to do here.
+          this.res = 0;
           this.surrender();
         }
       }, 1000);
@@ -93,6 +94,7 @@ export default {
       else if(ret_val === 0){
         this.txt = "Bravo !";
         clearInterval(this.intervalFunc);
+        this.res = 1;
         this.surrender();
         await this.$router.push("/Victory")
             .catch(function (error){

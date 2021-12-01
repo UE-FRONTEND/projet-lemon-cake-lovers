@@ -3,7 +3,7 @@
     <li v-for="x in getAll" v-bind:key="x">
       <p> Moyenne de temps : {{meanTps}}</p>
       <p> Moyenne tentative : {{meanTent}} </p>
-      <p> Pourcentage Victoire : {{victoryPerCent}}</p>
+      <p> Pourcentage Victoire : {{victoryPerCent}}%</p>
       <p>Nombre d'essais => {{x.essais}}</p>
       <p>Durée => {{x.minute}}:{{x.seconde}}</p>
       <p>Résultat de la partie => {{x.result}}</p>
