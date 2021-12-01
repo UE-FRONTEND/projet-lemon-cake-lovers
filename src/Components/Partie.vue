@@ -92,16 +92,12 @@ export default {
       }
       else if(ret_val === 0){
         this.txt = "Bravo !";
-        this.res = 1;
-        let obj = {
-          essais : this.essais,
-          seconde : 60 - this.second,
-          minute :9 - this.minute,
-          result : this.res
-        };
-        //window.console.log(obj);
-        this.addAll(obj);
         clearInterval(this.intervalFunc);
+        this.surrender();
+        await this.$router.push("/Victory")
+            .catch(function (error){
+          console.log(error);
+        });
       }
       else if(ret_val === -1){
         this.txt = "C'est moins !";

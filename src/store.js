@@ -17,6 +17,12 @@ export const store = createStore({
         getLastNbTries(state) {
             return state.allData[state.allData.length - 1 ].essais;
         },
+        getLastMinuteTries(state){
+            return state.allData[state.allData.length - 1].minute;
+        },
+        getLastSecondeTries(state){
+            return state.allData[state.allData.length - 1].seconde;
+        }
     },
     mutations: {
         addAll(state, object) {
