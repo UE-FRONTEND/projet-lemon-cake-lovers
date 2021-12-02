@@ -1,12 +1,20 @@
 <template>
   <ul>
-    <li v-for="x in getAll" v-bind:key="x">
+    <li v-for="(x, index) in getAll" v-bind:key="x">
       <p> Moyenne de temps : {{meanTps}}</p>
       <p> Moyenne tentative : {{meanTent}} </p>
       <p> Pourcentage Victoire : {{victoryPerCent}}%</p>
-      <p>Nombre d'essais => {{x.essais}}</p>
-      <p>Durée => {{x.minute}}:{{x.seconde}}</p>
-      <p>Résultat de la partie => {{x.result}}</p>
+      <p> ID : {{index}}</p>
+      <p>Nombre de tentatives : {{x.essais}}</p>
+      <p>Temps de jeu :
+        <span v-if="x.minute < 10">0</span>
+        {{x.minute}}:
+      <template v-if="x.seconde < 10">0</template>
+        {{x.seconde}}
+      </p>
+      <p>Résultat de la partie :</p>
+      <template v-if="x.result === 1">Victoire</template>
+      <template v-else>Défaite</template>
     </li>
   </ul>
   <router-link to="/">
@@ -63,4 +71,6 @@ export default {
 
 
 <style scoped>
+
+
 </style>
