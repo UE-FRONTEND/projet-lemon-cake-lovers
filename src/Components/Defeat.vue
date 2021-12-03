@@ -1,7 +1,7 @@
 <template>
-  <p>Nombre d'essais : {{ getLastNbTries }}</p>
+  <p id="NbEssaisDefaites" >Nombre d'essais : {{ getLastNbTries }}</p>
   <router-link to="/" tag="button">
-    <input type="button" value="Retour à l'accueil"/>
+    <input id="HomeBack" type="button" value="Retour à l'accueil"/>
   </router-link>
 </template>
 

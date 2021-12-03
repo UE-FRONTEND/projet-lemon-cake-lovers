@@ -3,12 +3,12 @@
       <p>Groupe : De La Rochebrochard Amaury et Boumali Samy</p>
       <p>TPA51</p>
       <router-link to="/Historique" tag="button">
-        <input type="button" value="Consulter historique" class="col"/>
+        <input id="Consult" type="button" value="Consulter historique" class="col"/>
       </router-link>
     </div>
     <div>
       <router-link to="/Partie" tag="button">
-        <input type="button" value="Démarrer"  class="col"/>
+        <input id="Demarre" type="button" value="Démarrer"  class="col"/>
       </router-link>
       <router-view></router-view>
     </div>

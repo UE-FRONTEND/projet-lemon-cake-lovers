@@ -7,12 +7,12 @@
   </h1>
   <input id ="GuessText" type="text"/>
   <br/>
-  <input type="button" value="Submit" @click="submit"/>
+  <input id ="GuessButton" type="button" value="Submit" @click="submit"/>
   <br/>
   <router-link to="/Defeat" tag="button">
-    <input type="button" value="Surrender" @click="surrender"/>
+    <input id="buttonSur" type="button" value="Surrender" @click="surrender"/>
   </router-link>
-  <p>{{txt}}</p>
+  <p id="TextRet">{{txt}}</p>
 </template>
 
 <script>
@@ -22,7 +22,8 @@ import axios from "axios";
 import { mapMutations } from "vuex";
 
 export default {
-  data() {
+  name : 'Partie',
+  data : function() {
     return {
       minute : 10,
       second : 0,
@@ -57,7 +58,7 @@ export default {
 
         } else {
           // Timer hits 0 do what you want to do here.
-          this.surrender();
+          document.getElementById("buttonSur").click();
         }
       }, 1000);
     },
@@ -102,6 +103,7 @@ export default {
         //window.console.log(obj);
         this.addAll(obj);
         clearInterval(this.intervalFunc);
+        document.getElementById("buttonSur").click();
       }
       else if(ret_val === -1){
         this.txt = "C'est moins !";

@@ -1,9 +1,11 @@
 <template>
   <ul>
-    <li v-for="x in getAll" v-bind:key="x">
+    <li v-for="(x,index) in getAll" v-bind:key="x">
+      <p>Numéro de partie : {{ index }}</p>
       <p>Nombre d'essais => {{x.essais}}</p>
       <p>Durée => {{x.minute}}:{{x.seconde}}</p>
-      <p>Résultat de la partie => {{x.result}}</p>
+      <p v-if="x.result === 0">Résultat de la partie => DEFEAT</p>
+      <p v-if="x.result === 1">Résultat de la partie => VICTORY</p>
     </li>
   </ul>
   <router-link to="/">
