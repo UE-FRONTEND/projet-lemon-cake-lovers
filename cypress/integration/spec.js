@@ -1,3 +1,35 @@
+function guessAnumber(guess,countTry,min,max) {
+    cy.wait(1000);
+    cy.get('#GuessText').type(String(guess));
+    cy.get('#GuessButton').click();
+    cy.get('#TextRet').invoke('text').then(text => res = text);
+    countTry += 1;
+    let term;
+    let res;
+    if(res !== "Bravo !") {
+        if(res === "C'est plus !") {
+            min = guess;
+            term = guess/2;
+            while(guess + term < max){
+                term /= 2;
+            }
+            guess += term;
+        }
+        else {
+            max = guess;
+            term = guess/2;
+            while(guess - term > min){
+                term /= 2;
+            }
+            guess -= term;
+        }
+        guessAnumber(guess,countTry,min,max);
+    }
+    else {
+        return countTry;
+    }
+}
+
 describe('Make sure our todo list app is working well', () => {
     /*it('Test that we can open a browser and load our app', () => {
         cy.visit("http://192.168.43.180:4000/");
@@ -28,32 +60,9 @@ describe('Make sure our todo list app is working well', () => {
     }),*/
     it('Greatest solver of this problem', () => {
         //cy.get('#HomeBack').click();
-        cy.visit("http://192.168.43.180:4000/");
+        cy.visit("http://192.168.43.180:4001/");
         cy.get('#Demarre').click();
-        cy.wait(1000);
-        const SubButton = cy.get('#buttonSur');
-        const SubText = cy.get('#GuessText');
-        let SubRes = cy.get('#TextRet');
-        cy.wait(5000); //OU virer les constantes/variables pour type après le get (asynchronisme);
-        let guess = 1000;
-        let countTry = 0;
-        const SubTry = () => {
-            //cy.wait(2000);
-            SubText.type(guess);
-            SubButton.click();
-            //countTry += 1;
-            /*if(SubRes.contains("C'est moins !")) {
-                guess -=  guess/2;
-                SubTry(guess);
-            }
-            else if (SubRes.contains("C'est plus !")){
-                guess += guess/2;
-                SubTry(guess);
-            }
-            else {
-                cy.get('#NbEssaisDefaites').contains("Nombre d'essais : "+String(countTry));
-            }*/
-        }
-        SubTry();
+        cy.wait(3000);
+        let countTry = guessAnumber(1000,0,0,1000);
     })
 })
