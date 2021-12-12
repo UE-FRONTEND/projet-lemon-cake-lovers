@@ -1,9 +1,11 @@
 <template>
   <ul class="item-list" :style="gridStyle">
+    <div class="itemRed">
+    <p> Moyenne de temps : {{meanTps}}</p>
+    <p> Moyenne tentative : {{meanTent}} </p>
+    <p> Pourcentage Victoire : {{victoryPerCent}}%</p>
+    </div>
     <div v-for="(x, index) in getAll" v-bind:key="x" class="item">
-      <p> Moyenne de temps : {{meanTps}}</p>
-      <p> Moyenne tentative : {{meanTent}} </p>
-      <p> Pourcentage Victoire : {{victoryPerCent}}%</p>
       <p> ID : {{index}}</p>
       <p>Nombre de tentatives : {{x.essais}}</p>
       <p>Temps de jeu :
@@ -19,7 +21,7 @@
     </div>
   </ul>
   <router-link to="/">
-    <input type="button" value="Retour à l'accueil">
+    <input class="button" type="button" value="Retour à l'accueil">
   </router-link>
 </template>
 
@@ -80,6 +82,27 @@ export default {
 
 <style scoped>
 
+.button{
+  text-align: center;
+  position: absolute;
+  left: 37.5%;
+  grid-template-columns: repeat(30, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  width: 250px;
+  height: 70px;
+  border-radius: 3px;
+  color: #fff;
+  background: #027ad6;
+  font: 700 18px sans-serif;
+  box-shadow:
+      0 1px 2px rgba(0,0,0,0.07),
+      0 2px 4px rgba(0,0,0,0.07),
+      0 4px 8px rgba(0,0,0,0.07),
+      0 8px 16px rgba(0,0,0,0.07),
+      0 16px 32px rgba(0,0,0,0.07),
+      0 32px 64px rgba(0,0,0,0.07);
+}
+
 .item-list {
   display: grid;
   grid-gap: 1em;
@@ -87,6 +110,10 @@ export default {
 
 .item {
   background-color: lightblue;
+  padding: 2em;
+}
+.itemRed {
+  background-color: coral;
   padding: 2em;
 }
 
