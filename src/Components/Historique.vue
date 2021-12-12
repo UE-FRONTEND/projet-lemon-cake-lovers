@@ -12,9 +12,10 @@
       <template v-if="x.seconde < 10">0</template>
         {{x.seconde}}
       </p>
-      <p>Résultat de la partie :</p>
+      <p>Résultat de la partie :
       <template v-if="x.result === 1">Victoire</template>
       <template v-else>Défaite</template>
+      </p>
     </li>
   </ul>
   <router-link to="/">
