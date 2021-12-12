@@ -1,6 +1,6 @@
 <template>
-  <ul>
-    <li v-for="(x, index) in getAll" v-bind:key="x">
+  <ul class="item-list" :style="gridStyle">
+    <div v-for="(x, index) in getAll" v-bind:key="x" class="item">
       <p> Moyenne de temps : {{meanTps}}</p>
       <p> Moyenne tentative : {{meanTent}} </p>
       <p> Pourcentage Victoire : {{victoryPerCent}}%</p>
@@ -16,7 +16,7 @@
       <template v-if="x.result === 1">Victoire</template>
       <template v-else>Défaite</template>
       </p>
-    </li>
+    </div>
   </ul>
   <router-link to="/">
     <input type="button" value="Retour à l'accueil">
@@ -31,6 +31,13 @@ export default {
   computed : {
     ...mapGetters(["getAll"]),
     ...mapGetters(["count"]),
+
+    gridStyle() {
+      return {
+        gridTemplateColumns: `repeat(4, minmax(350px, 350px))`
+      }
+    },
+
     meanTps : function(){
       let array = this.getAll
       let sum = 0 ;
@@ -72,6 +79,26 @@ export default {
 
 
 <style scoped>
+
+.item-list {
+  display: grid;
+  grid-gap: 1em;
+}
+
+.item {
+  background-color: lightblue;
+  padding: 2em;
+}
+
+body {
+  background: #20262E;
+  padding: 20px;
+  font-family: Helvetica;
+}
+
+ul {
+  list-style-type: none;
+}
 
 
 </style>
