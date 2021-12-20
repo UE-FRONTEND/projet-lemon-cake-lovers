@@ -1,11 +1,14 @@
 <template>
+  <!--Division contenant l'ensemble des statistiques de la partie-->
   <h1 class="title">Défaite &#128514 &#128073 U</h1>
   <h2 class="subtitle">Statistique de la partie</h2>
-  <strong class="essais" id="NbEssaisDefaites" >Nombre d'essais  :</strong>
+  <!-- Nombre d'essais de la partie-->
+  <strong class="essais" >Nombre d'essais :</strong>
   <p class="nombre">{{ getLastNbTries }}</p>
   <br/>
+  <!--Gestion des changements de pages : Retour à la page d'accueil-->
   <router-link to="/" tag="b-button">
-    <button class="button">Retour à l'accueil</button>
+    <button id="HomeBack" class="button">Retour à l'accueil</button>
   </router-link>
 </template>
 
@@ -15,6 +18,7 @@ import { mapGetters } from "vuex";
 
 export default {
   name : 'Defeat',
+  //Récupération des informations stockées via Vuex
   computed : {
     ...mapGetters(["getLastNbTries"]),
   }
