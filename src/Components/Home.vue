@@ -1,10 +1,14 @@
+<!-- Page d'acceuil -->
 <template>
+    <!-- Titre -->
     <h1 class="title">DEVINEZ LE NOMBRE &#129300</h1>
+    <!-- Division contenant les informations du groupe -->
     <div>
       <h2 class="groupe">Groupe</h2>
       <p class="groupeName">De La Rochebrochard Amaury et Boumali Samy</p>
       <p class="groupeVal">TPA51</p>
     </div>
+    <!-- Division contenant les informations concernant le jeu -->
     <div>
       <h2 class="Concept">Concept</h2>
       <p class="ConceptVal">Le jeu est simple, il s'agit de deviner la valeur d'un nombre choisi au hasard avec un outil super-puissant
@@ -13,13 +17,14 @@
         Le nombre de tentatives n'est pas limité cependant une partie dure seulement dix minutes.
       </p>
     </div>
+    <!-- Division contenant les fonctionnalités du jeu avec la gestion des pages via router -->
     <div>
       <h2 class="Fonctionnalites">À vous de jouer</h2>
       <router-link to="/Historique" tag="button">
-        <button class="buttonHisto">Consulter historique</button>
+        <button id="Histo" class="buttonHisto">Consulter historique</button>
       </router-link>
       <router-link to="/Partie" tag="button">
-        <button class="buttonPartie">Démarrer une partie</button>
+        <button id="Demarre" class="buttonPartie">Démarrer une partie</button>
       </router-link>
       <router-view></router-view>
     </div>

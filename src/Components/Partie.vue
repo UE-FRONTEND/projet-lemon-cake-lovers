@@ -91,7 +91,7 @@ export default {
 
       //Handling req value
       if(ret_val === 1){
-        this.txt = "C'est plus !" + String.fromCharCode(11014);
+        this.txt = "C'est plus !";
         this.essais += 1;
       }
       else if(ret_val === 0){
@@ -105,7 +105,7 @@ export default {
         });
       }
       else if(ret_val === -1){
-        this.txt = "C'est moins !" + String.fromCharCode(11015);
+        this.txt = "C'est moins !";
         this.essais += 1;
       }
       document.getElementById("GuessText").value ="";
@@ -120,7 +120,6 @@ export default {
         minute : min,
         result : this.res
       };
-      //window.console.log(obj);
       this.addAll(obj);
     },
   }

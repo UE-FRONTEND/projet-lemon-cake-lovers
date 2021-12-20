@@ -1,24 +1,28 @@
 <template>
+  <!--Division contenant l'ensemble des statistiques de la partie-->
   <div>
     <h1 class="title">Victoire &#128513</h1>
     <h2 class="subtitle">Statistiques de la partie</h2>
     <p class="essais"> Nombre d'essais :</p>
-    <p class="nombre"> {{ getLastNbTries }}</p>
+    <p class="nombre"> {{ getLastNbTries }}</p>  <!-- Nombre d'essais de la partie-->
     <div class="time">
-        <p style="display: inline-block">Temps écoulé : &nbsp</p>
+        <p style="display: inline-block">Temps écoulé : &nbsp</p>  <!-- Temps écoulé-->
         <div class="subtime">
             [
             <template v-if="getLastMinuteTries< 10">
+    <!-- Nombre de minutes écoulées, on ajoute un 0 pour l'esthétique si nécessaire ( uniquement le chiffre des unités ) -->
             <p style="display: inline-block"> 0</p>
             </template>
 
           <p style="display: inline-block">{{getLastMinuteTries}} :&nbsp</p>
             <template v-if="getLastSecondeTries < 10">
+    <!-- Nombre de secondes écoulées, on ajoute un 0 pour l'esthétique si nécessaire ( uniquement le chiffre des unités ) -->
               <p style="display: inline-block">0</p>
             </template>
           <p style="display: inline-block">{{getLastSecondeTries}} ]</p>
         </div>
     </div>
+    <!--Gestion des changements de pages : Retour à la page d'accueil-->
     <router-link to="/" tag="button">
       <button class="button">Retour à l'accueil</button>
     </router-link>
@@ -30,6 +34,7 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "Victory",
+  //Récupération des informations stockées via Vuex
   computed : {
     ...mapGetters(["getLastNbTries"]),
     ...mapGetters(["getLastMinuteTries"]),
