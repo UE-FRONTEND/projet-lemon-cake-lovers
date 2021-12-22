@@ -1,25 +1,31 @@
 <template>
+  <!--Creation de la grille-->
   <ul class="item-list" :style="gridStyle">
+    <!-- Création du premier élément de la grille contenant les stats général -->
     <div class="itemRed">
     <p> Moyenne de temps : {{meanTps}}</p>
     <p> Moyenne tentative : {{meanTent}} </p>
     <p> Pourcentage Victoire : {{victoryPerCent}}%</p>
     </div>
+    <!-- Création des autres éléments de la grille-->
     <div v-for="(x, index) in getAll" v-bind:key="x" class="item">
       <p> ID : {{index}}</p>
       <p>Nombre de tentatives : {{x.essais}}</p>
       <p>Temps de jeu :
+        <!-- Condition dans le cas ou minute ou seconde < 10 pour ajouter un 0 pour l'esthétique -->
         <span v-if="x.minute < 10">0</span>
         {{x.minute}}:
       <template v-if="x.seconde < 10">0</template>
         {{x.seconde}}
       </p>
+      <!-- Resultat partie -->
       <p>Résultat de la partie :
       <template v-if="x.result === 1">Victoire</template>
       <template v-else>Défaite</template>
       </p>
     </div>
   </ul>
+  <!-- Bouton retour à l'accueil -->
   <router-link to="/">
     <input class="button" type="button" value="Retour à l'accueil">
   </router-link>
@@ -31,25 +37,28 @@ import { mapGetters } from "vuex";
 export default {
   name : 'Historique',
   computed : {
+    //Récupération des fonctions du store
     ...mapGetters(["getAll"]),
     ...mapGetters(["count"]),
 
+    //return le template de la grille
     gridStyle() {
       return {
         gridTemplateColumns: `repeat(4, minmax(350px, 350px))`
       }
     },
-
+    //Calcul la moyenne de temps grâce a getAll
     meanTps : function(){
       let array = this.getAll
       let sum = 0 ;
+      //Sum : somme des secondes
       for(let i in array){
         sum += array[i].seconde;
         if(array[i].minute > 0){
           sum+= array[i].minute * 60
         }
       }
-
+      //Conversion de sum en minute seconde
       let meanInSec = Math.floor(sum / this.count);
       let minuteOut = Math.floor((meanInSec / 60));
       let secondOut = meanInSec - (minuteOut*60);
@@ -57,7 +66,7 @@ export default {
       return minuteOut + ":"+ (secondOut < 10 ? '0' : '') + secondOut;
 
     },
-
+    //calcul la moyenne des tentatives grâce a getAll
     meanTent : function (){
       let array = this.getAll
       let sum = 0 ;
@@ -67,6 +76,7 @@ export default {
       return Math.floor(sum / this.count);
     },
 
+    //calcul la moyenne des victoire en % grâce a getAll
     victoryPerCent : function(){
       let array = this.getAll
       let sum = 0 ;
@@ -81,7 +91,6 @@ export default {
 
 
 <style scoped>
-
 .button{
   text-align: center;
   position: absolute;

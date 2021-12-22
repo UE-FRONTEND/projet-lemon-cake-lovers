@@ -1,10 +1,12 @@
 <template>
+  <!-- affichage du timer -->
   <h1 class="timer"> &#128337 {{minute}} :
     <template v-if="this.second < 10">
       0
     </template>
     {{second}} &#128337
   </h1>
+  <!-- affichage des divers boutons et du textfield -->
   <input id ="GuessText" type="text" class="field"/>
   <br/>
   <input id ="GuessButton" type="button" value="Submit"  class="buttonValid" @click="submit"/>
@@ -12,6 +14,7 @@
   <router-link to="/Defeat" tag="button">
     <input id="buttonSur" type="button" value="Surrender" class="buttonSurr" @click="surrender"/>
   </router-link>
+  <!-- texte plus ou moins -->
   <p id="TextRet" class="txt">{{txt}}</p>
   <p class="txtUnder"> Devinez un chiffre entre 0 et 1000 ! </p>
 </template>
@@ -33,23 +36,21 @@ export default {
       res : 0,
       essais : 0,
       txt : "Tentez votre chance !",
-      intervalFunc : undefined, //contain the interval for the timer
+      intervalFunc : undefined, //La function interval pour le timer
     }
   },
-  //Called at page render
+  //Appelé à chaque rendu de page
   mounted : function() {
-    //Init token for request
+    //Init token
     this.getToken();
+    //Set a tout les tick la fonction tickFunc
     this.$nextTick( () => this.tickFunc() ); //Leave the function otherwise js will use the void return of tickfunc
   },
   methods : {
-
-    /*...mapMutations(["addNbTries"]),
-    ...mapMutations(["addDuration"]),
-    ...mapMutations(["addResult"]),**/
+    //Récupération des fonctions du store
     ...mapMutations(["addAll"]),
 
-    //Decrease the timer and set intervalFunc
+    //Decroit le timer et  init intervalFunc
     tickFunc: function(){
       this.intervalFunc = window.setInterval(() => {
         if (this.second > 0) {
@@ -59,13 +60,14 @@ export default {
           this.minute--;
 
         } else {
-          // Timer hits 0 do what you want to do here.
+          // Timer == 00
           this.res = 0;
           this.surrender();
         }
       }, 1000);
     },
 
+    //Init token et catch error
     getToken : async function() {
       //Get Request
       let tmp;
@@ -87,17 +89,21 @@ export default {
       this.guess = parseInt(document.getElementById("GuessText").value);
       let response1 = axios.post("https://vuejs-rest-challenge.herokuapp.com/try",
                  {token : this.token , guess : this.guess});
-      let ret_val = (await response1).data.code; //response return a tab with field code
 
-      //Handling req value
+      let ret_val = (await response1).data.code; //response return un tab avec un code
+
+      //condition de ret_val
       if(ret_val === 1){
         this.txt = "C'est plus !";
         this.essais += 1;
       }
       else if(ret_val === 0){
         this.txt = "Bravo !";
+        //On supprime la fonction intervalFunc
         clearInterval(this.intervalFunc);
         this.res = 1;
+
+        //On finit la partie par "surrender" et on affiche la page Victoire
         this.surrender();
         await this.$router.push("/Victory")
             .catch(function (error){
@@ -108,9 +114,10 @@ export default {
         this.txt = "C'est moins !";
         this.essais += 1;
       }
+      //On vide le champ texte
       document.getElementById("GuessText").value ="";
     },
-
+    //On récupere les variables nécessaire a la page Historique
     surrender : function () {
       let sec = 60 - this.second;
       let min = 9 - this.minute;
