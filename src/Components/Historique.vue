@@ -27,7 +27,7 @@
   </ul>
   <!-- Bouton retour à l'accueil -->
   <router-link to="/">
-    <input class="button" type="button" value="Retour à l'accueil">
+    <input class="button" id="HomeBack" type="button" value="Retour à l'accueil">
   </router-link>
 </template>
 

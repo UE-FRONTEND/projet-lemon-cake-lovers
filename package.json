@@ -12,7 +12,6 @@
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.19.0",
-    "cypress": "^9.0.0",
     "vue": "^3.2.20",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2"
@@ -22,6 +21,7 @@
     "@vue/cli-service": "~4.5.14",
     "@vue/compiler-sfc": "^3.2.20",
     "babel-eslint": "^10.1.0",
+    "cypress": "^9.2.0",
     "eslint": "^8.1.0",
     "eslint-plugin-vue": "^7.20.0"
   },
