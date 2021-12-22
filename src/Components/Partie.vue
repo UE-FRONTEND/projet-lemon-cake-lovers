@@ -91,11 +91,13 @@ export default {
                  {token : this.token , guess : this.guess});
 
       let ret_val = (await response1).data.code; //response return un tab avec un code
-
+      let changePage = false;
       //condition de ret_val
       if(ret_val === 1){
         this.txt = "C'est plus !";
         this.essais += 1;
+        //On vide le champ texte
+        document.getElementById("GuessText").value ="";
       }
       else if(ret_val === 0){
         this.txt = "Bravo !";
@@ -113,9 +115,9 @@ export default {
       else if(ret_val === -1){
         this.txt = "C'est moins !";
         this.essais += 1;
+        //On vide le champ texte
+        document.getElementById("GuessText").value ="";
       }
-      //On vide le champ texte
-      document.getElementById("GuessText").value ="";
     },
     //On récupere les variables nécessaire a la page Historique
     surrender : function () {
