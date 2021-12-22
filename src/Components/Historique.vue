@@ -44,7 +44,7 @@ export default {
     //return le template de la grille
     gridStyle() {
       return {
-        gridTemplateColumns: `repeat(4, minmax(350px, 350px))`
+        gridTemplateColumns: `repeat(4, 15em )`
       }
     },
     //Calcul la moyenne de temps grâce a getAll
