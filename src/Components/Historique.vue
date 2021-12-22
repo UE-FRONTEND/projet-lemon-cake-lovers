@@ -55,7 +55,7 @@ export default {
       for(let i in array){
         sum += array[i].seconde;
         if(array[i].minute > 0){
-          sum+= array[i].minute * 60
+          sum+= array[i].minute * 60;
         }
       }
       //Conversion de sum en minute seconde
